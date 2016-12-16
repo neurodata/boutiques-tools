@@ -1,12 +1,12 @@
 {
 	"inputs" : [
-		{ "dti_file" : "/tmp/project_demo/sub-0025864_session-1_dwi.nii.gz" },
-		{ "bval_file" : "/tmp/project_demo/sub-0025864_session-1_dwi.bval" },
-		{ "bvec_file" : "/tmp/project_demo/sub-0025864_session-1_dwi.bvec" },
-		{ "mprage_file" : "/tmp/project_demo/sub-0025864_session-1_T1w.nii.gz" },
+		{ "dti_file" : "KKI2009_113_1_DTI.nii" },
+		{ "bval_file" : "KKI2009_113_1_DTI.bval" },
+		{ "bvec_file" : "KKI2009_113_1_DTI.bvec" },
+		{ "mprage_file" : "KKI2009_113_1_MPRAGE.nii" },
 		{ "atlas" : "/ndmg_atlases/atlas/MNI152_T1_1mm.nii.gz" },
 		{ "mask" : "/ndmg_atlases/atlas/MNI152_T1_1mm_brain_mask.nii.gz" },
-		{ "outdir" : "/tmp/project_demo/output/" },
+		{ "outdir" : "output/" },
 		{ "desikan" : "/ndmg_atlases/labels/desikan.nii.gz" },
 		{ "aal" : "/ndmg_atlases/labels/AAL.nii.gz" },
 		{ "clean" : "true" }
