@@ -5,8 +5,9 @@
 # Args:
 #   [PIPELINE] - json file to evaluate; defaults to ndmg
 #   [INPUTS] - json or csv file containing inputs; defaults to inputs.json (for ndmg)
-#
+#    **** assumes location of boutiques executable
 
+bout=/Users/gkiar/code/mni/boutiques/tools/
 if [ $# -eq 0 ]
   then
     inputs=ndmg_inputs
@@ -20,4 +21,4 @@ else
     inputs=$2
 fi
 
-docker run --rm -v $PWD:/work -w /work boutiques/boutiques localExec.py -i inputs/${inputs}.json -e cbrain_task_descriptors/${pipeline}.json
+python ${bout}localExec.py -i inputs/${inputs}.json -e cbrain_task_descriptors/${pipeline}.json
