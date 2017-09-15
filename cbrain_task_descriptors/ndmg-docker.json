@@ -128,7 +128,7 @@
         }
     ], 
     "container-image": {
-        "index": "http://index.docker.io", 
+        "index": "index.docker.io", 
         "image": "neurodata/ndmg:v0.0.50", 
         "type": "docker"
     }, 
