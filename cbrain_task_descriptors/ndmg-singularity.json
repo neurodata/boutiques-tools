@@ -241,7 +241,7 @@
         }
     ], 
     "suggested-resources": {
-        "walltime-estimate": 3600
+        "walltime-estimate": 7400
     }, 
     "description": "dwi connectome estimation pipeline"
 }
