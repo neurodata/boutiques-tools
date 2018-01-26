@@ -1,4 +1,4 @@
-FROM bids/ndmg:v0.0.50
+FROM bids/ndmg:v0.1.0
 MAINTAINER Greg Kiar <gkiar@jhu.edu>
 
 RUN mkdir /data &&\

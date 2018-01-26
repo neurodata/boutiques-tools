@@ -1,5 +1,5 @@
 {
-    "tool-version": "v0.0.50d", 
+    "tool-version": "v0.1.0", 
     "name": "ndmg", 
     "command-line": "ndmg_pipeline [DTI] [BVAL] [BVEC] [MPRAGE] [ATLAS] [MASK] [OUTDIR] [DESIKAN] [JHU] [TALAIRACH] [AAL] [HARVARDOXFORD] [CPAC200] [CLEAN]", 
     "inputs": [
@@ -129,7 +129,7 @@
     ], 
     "container-image": {
         "index": "index.docker.io", 
-        "image": "neurodata/ndmg:v0.0.50", 
+        "image": "neurodata/ndmg:v0.1.0", 
         "type": "docker"
     }, 
     "schema-version": "0.5", 
