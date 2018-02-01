@@ -1,7 +1,7 @@
 {
     "tool-version": "v0.1.0", 
     "name": "ndmg", 
-    "command-line": "ndmg_pipeline [DTI] [BVAL] [BVEC] [MPRAGE] [ATLAS] [MASK] [OUTDIR] [DESIKAN] [JHU] [TALAIRACH] [AAL] [HARVARDOXFORD] [CPAC200] [CLEAN]", 
+    "command-line": "ndmg_dwi_pipeline [DTI] [BVAL] [BVEC] [MPRAGE] [ATLAS] [MASK] [OUTDIR] [DESIKAN] [JHU] [TALAIRACH] [AAL] [HARVARDOXFORD] [CPAC200] [CLEAN]", 
     "inputs": [
         {
             "value-key": "[DTI]", 
@@ -129,7 +129,7 @@
     ], 
     "container-image": {
         "index": "index.docker.io", 
-        "image": "neurodata/ndmg:v0.1.0", 
+        "image": "bids/ndmg:v0.1.0", 
         "type": "docker"
     }, 
     "schema-version": "0.5", 
