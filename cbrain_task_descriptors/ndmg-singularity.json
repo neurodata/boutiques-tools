@@ -1,247 +1,197 @@
 {
-    "tool-version": "v0.0.50s", 
-    "name": "ndmg", 
-    "command-line": "ndmg_pipeline [DTI] [BVAL] [BVEC] [MPRAGE] [ATLAS] [MASK] [OUTDIR] [DESIKAN] [JHU] [TALAIRACH] [AAL] [HARVARDOXFORD] [CPAC200] [CLEAN]", 
+    "command-line": "ndmg_pipeline [DTI] [BVAL] [BVEC] [MPRAGE] [ATLAS] [MASK] [OUTDIR] [PARCELLATIONS] [CLEAN]",
+    "container-image": {
+        "image": "bids/ndmg:v0.1.0",
+        "index": "shub://",
+        "type": "singularity"
+    },
+    "description": "dwi connectome estimation pipeline",
     "inputs": [
         {
-            "value-key": "[DTI]", 
-            "optional": false, 
-            "type": "File", 
-            "id": "dti_file", 
-            "name": "Diffusion Tensor Image"
-        }, 
+            "id": "dti_file",
+            "name": "Diffusion Tensor Image",
+            "optional": false,
+            "type": "File",
+            "value-key": "[DTI]"
+        },
         {
-            "value-key": "[BVAL]", 
-            "optional": false, 
-            "type": "File", 
-            "id": "bval_file", 
-            "name": "B-values file"
-        }, 
+            "id": "bval_file",
+            "name": "B-values file",
+            "optional": false,
+            "type": "File",
+            "value-key": "[BVAL]"
+        },
         {
-            "value-key": "[BVEC]", 
-            "optional": false, 
-            "type": "File", 
-            "id": "bvec_file", 
-            "name": "Gradient vectors file"
-        }, 
+            "id": "bvec_file",
+            "name": "Gradient vectors file",
+            "optional": false,
+            "type": "File",
+            "value-key": "[BVEC]"
+        },
         {
-            "value-key": "[MPRAGE]", 
-            "optional": false, 
-            "type": "File", 
-            "id": "mprage_file", 
-            "name": "Structural scan file"
-        }, 
+            "id": "mprage_file",
+            "name": "Structural scan file",
+            "optional": false,
+            "type": "File",
+            "value-key": "[MPRAGE]"
+        },
         {
-            "name": "Atlas image (MNI152)", 
-            "value-key": "[ATLAS]", 
-            "type": "String", 
+            "default-value": "/ndmg_atlases/atlas/MNI152_T1_1mm.nii.gz",
+            "id": "atlas",
+            "name": "Atlas image (MNI152)",
+            "optional": false,
+            "type": "String",
             "value-choices": [
                 "/ndmg_atlases/atlas/MNI152_T1_1mm.nii.gz"
-            ], 
-            "optional": false, 
-            "id": "atlas"
-        }, 
+            ],
+            "value-key": "[ATLAS]"
+        },
         {
-            "name": "Atlas brain mask", 
-            "value-key": "[MASK]", 
-            "type": "String", 
+            "default-value": "/ndmg_atlases/atlas/MNI152_T1_1mm_brain_mask.nii.gz",
+            "id": "mask",
+            "name": "Atlas brain mask",
+            "optional": false,
+            "type": "String",
             "value-choices": [
                 "/ndmg_atlases/atlas/MNI152_T1_1mm_brain_mask.nii.gz"
-            ], 
-            "optional": false, 
-            "id": "mask"
-        }, 
+            ],
+            "value-key": "[MASK]"
+        },
         {
-            "value-key": "[OUTDIR]", 
-            "optional": false, 
-            "type": "String", 
-            "id": "outdir", 
-            "name": "Output directory"
-        }, 
+            "id": "outdir",
+            "name": "Output directory",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTDIR]"
+        },
         {
-            "name": "Desikan parcellation", 
-            "value-key": "[DESIKAN]", 
-            "type": "String", 
+            "id": "parcellations",
+            "list": true,
+            "name": "Parcellations to use",
+            "optional": false,
+            "type": "String",
+            "min-list-entries": 1,
             "value-choices": [
-                "/ndmg_atlases/labels/desikan.nii.gz"
-            ], 
-            "optional": true, 
-            "id": "desikan"
-        }, 
-        {
-            "name": "JHU parcellation", 
-            "value-key": "[JHU]", 
-            "type": "String", 
-            "value-choices": [
-                "/ndmg_atlases/labels/JHU.nii.gz"
-            ], 
-            "optional": true, 
-            "id": "jhu"
-        }, 
-        {
-            "name": "Talairach parcellation", 
-            "value-key": "[TALAIRACH]", 
-            "type": "String", 
-            "value-choices": [
+                "/ndmg_atlases/labels/AAL.nii.gz",
+                "/ndmg_atlases/labels/CPAC200.nii.gz",
+                "/ndmg_atlases/labels/DS00071.nii.gz",
+                "/ndmg_atlases/labels/DS00096.nii.gz",
+                "/ndmg_atlases/labels/DS00108.nii.gz",
+                "/ndmg_atlases/labels/DS00140.nii.gz",
+                "/ndmg_atlases/labels/DS00195.nii.gz",
+                "/ndmg_atlases/labels/DS00278.nii.gz",
+                "/ndmg_atlases/labels/DS00350.nii.gz",
+                "/ndmg_atlases/labels/DS00446.nii.gz",
+                "/ndmg_atlases/labels/DS00583.nii.gz",
+                "/ndmg_atlases/labels/DS00833.nii.gz",
+                "/ndmg_atlases/labels/DS01216.nii.gz",
+                "/ndmg_atlases/labels/DS01876.nii.gz",
+                "/ndmg_atlases/labels/DS03231.nii.gz",
+                "/ndmg_atlases/labels/DS06481.nii.gz",
+                "/ndmg_atlases/labels/DS16784.nii.gz",
+                "/ndmg_atlases/labels/DS72784.nii.gz",
+                "/ndmg_atlases/labels/Desikan2012.nii.gz",
+                "/ndmg_atlases/labels/HarvardOxford.nii.gz",
+                "/ndmg_atlases/labels/JHU.nii.gz",
                 "/ndmg_atlases/labels/Talairach.nii.gz"
-            ], 
-            "optional": true, 
-            "id": "talairach"
-        }, 
+            ],
+            "value-key": "[PARCELLATIONS]"
+        },
         {
-            "name": "AAL parcellation", 
-            "value-key": "[AAL]", 
-            "type": "String", 
-            "value-choices": [
-                "/ndmg_atlases/labels/AAL.nii.gz"
-            ], 
-            "optional": true, 
-            "id": "aal"
-        }, 
-        {
-            "name": "Harvard-Oxford parcellation", 
-            "value-key": "[HARVARDOXFORD]", 
-            "type": "String", 
-            "value-choices": [
-                "/ndmg_atlases/labels/HarvardOxford.nii.gz"
-            ], 
-            "optional": true, 
-            "id": "harvardoxford"
-        }, 
-        {
-            "name": "CPAC200 parcellation", 
-            "value-key": "[CPAC200]", 
-            "type": "String", 
-            "value-choices": [
-                "/ndmg_atlases/labels/CPAC200.nii.gz"
-            ], 
-            "optional": true, 
-            "id": "cpac200"
-        }, 
-        {
-            "command-line-flag": "-c", 
-            "name": "Clean-up flag", 
-            "value-key": "[CLEAN]", 
-            "type": "Flag", 
-            "optional": true, 
-            "id": "clean"
+            "command-line-flag": "-c",
+            "id": "clean",
+            "name": "Clean-up flag",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[CLEAN]"
         }
-    ], 
-    "container-image": {
-        "index": "shub://", 
-        "image": "gkiar/ndmg-cbrain:master", 
-        "type": "singularity"
-    }, 
-    "schema-version": "0.5", 
-    "groups": [
-        {
-            "one-is-required": true, 
-            "id": "parcellation_group", 
-            "members": [
-                "desikan", 
-                "jhu", 
-                "talairach", 
-                "aal", 
-                "harvardoxford", 
-                "cpac200"
-            ], 
-            "name": "Group of all used parcellations"
-        }
-    ], 
+    ],
+    "invocation-schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "additionalProperties": false,
+        "dependencies": {},
+        "description": "Invocation schema for ndmg.",
+        "properties": {
+            "atlas": {
+                "enum": [
+                    "/ndmg_atlases/atlas/MNI152_T1_1mm.nii.gz"
+                ]
+            },
+            "bval_file": {
+                "type": "string"
+            },
+            "bvec_file": {
+                "type": "string"
+            },
+            "clean": {
+                "type": "boolean"
+            },
+            "dti_file": {
+                "type": "string"
+            },
+            "mask": {
+                "enum": [
+                    "/ndmg_atlases/atlas/MNI152_T1_1mm_brain_mask.nii.gz"
+                ]
+            },
+            "mprage_file": {
+                "type": "string"
+            },
+            "outdir": {
+                "type": "string"
+            },
+            "parcellations": {
+                "enum": [
+                        "/ndmg_atlases/labels/AAL.nii.gz",
+                        "/ndmg_atlases/labels/CPAC200.nii.gz",
+                        "/ndmg_atlases/labels/DS00071.nii.gz",
+                        "/ndmg_atlases/labels/DS00096.nii.gz",
+                        "/ndmg_atlases/labels/DS00108.nii.gz",
+                        "/ndmg_atlases/labels/DS00140.nii.gz",
+                        "/ndmg_atlases/labels/DS00195.nii.gz",
+                        "/ndmg_atlases/labels/DS00278.nii.gz",
+                        "/ndmg_atlases/labels/DS00350.nii.gz",
+                        "/ndmg_atlases/labels/DS00446.nii.gz",
+                        "/ndmg_atlases/labels/DS00583.nii.gz",
+                        "/ndmg_atlases/labels/DS00833.nii.gz",
+                        "/ndmg_atlases/labels/DS01216.nii.gz",
+                        "/ndmg_atlases/labels/DS01876.nii.gz",
+                        "/ndmg_atlases/labels/DS03231.nii.gz",
+                        "/ndmg_atlases/labels/DS06481.nii.gz",
+                        "/ndmg_atlases/labels/DS16784.nii.gz",
+                        "/ndmg_atlases/labels/DS72784.nii.gz",
+                        "/ndmg_atlases/labels/Desikan2012.nii.gz",
+                        "/ndmg_atlases/labels/HarvardOxford.nii.gz",
+                        "/ndmg_atlases/labels/JHU.nii.gz",
+                        "/ndmg_atlases/labels/Talairach.nii.gz"
+                 ]
+            }
+        },
+        "required": [
+            "dti_file",
+            "bval_file",
+            "bvec_file",
+            "mprage_file",
+            "atlas",
+            "mask",
+            "outdir",
+            "parcellations"
+        ],
+        "title": "ndmg.invocationSchema",
+        "type": "object"
+    },
+    "name": "ndmg",
     "output-files": [
         {
-            "path-template": "[OUTDIR]/reg_dti/[DTI]_aligned.nii.gz", 
-            "optional": true, 
-            "id": "aligned_dti", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "Aligned DTI volume"
-        }, 
-        {
-            "path-template": "[OUTDIR]/tensors/[DTI]_tensors.npz", 
-            "optional": true, 
-            "id": "tensors", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "Tensor maps"
-        }, 
-        {
-            "path-template": "[OUTDIR]/fibers/[DTI]_fibers.npz", 
-            "optional": true, 
-            "id": "fibers", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "Fiber streamlines"
-        }, 
-        {
-            "path-template": "[OUTDIR]/graphs/desikan/[DTI]_desikan.gpickle", 
-            "optional": true, 
-            "id": "desikan_graph", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "Desikan graph"
-        }, 
-        {
-            "path-template": "[OUTDIR]/graphs/JHU/[DTI]_JHU.gpickle", 
-            "optional": true, 
-            "id": "jhu_graph", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "JHU graph"
-        }, 
-        {
-            "path-template": "[OUTDIR]/graphs/Talairach/[DTI]_Talairach.gpickle", 
-            "optional": true, 
-            "id": "talairach_graph", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "Talairach graph"
-        }, 
-        {
-            "path-template": "[OUTDIR]/graphs/AAL/[DTI]_AAL.gpickle", 
-            "optional": true, 
-            "id": "aal_graph", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "AAL graph"
-        }, 
-        {
-            "path-template": "[OUTDIR]/graphs/HarvardOxford/[DTI]_HarvardOxford.gpickle", 
-            "optional": true, 
-            "id": "harvardoxford_graph", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "Harvard-Oxford graph"
-        }, 
-        {
-            "path-template": "[OUTDIR]/graphs/CPAC200/[DTI]_CPAC200.gpickle", 
-            "optional": true, 
-            "id": "cpac200_graph", 
-            "path-template-stripped-extensions": [
-                ".nii", 
-                ".nii.gz"
-            ], 
-            "name": "CPAC200 graph"
+            "id": "output_directory",
+            "name": "Output directory containing graphs, fibers, tensors, and aligned volumes",
+            "optional": true,
+            "path-template": "[OUTDIR]"
         }
-    ], 
+    ],
+    "schema-version": "0.5",
     "suggested-resources": {
         "walltime-estimate": 7400
-    }, 
-    "description": "dwi connectome estimation pipeline"
+    },
+    "tool-version": "v0.0.50s"
 }
