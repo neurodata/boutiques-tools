@@ -1,6 +1,8 @@
 {
     "tool-version": "v0.1.0", 
     "name": "ndmg", 
+    "author": "Greg Kiar", 
+    "descriptor-url": "https://github.com/neurodata/boutiques-tools/blob/8d5274754e2d5b3b146f2b3cc581400b96bb6081/cbrain_task_descriptors/ndmg-docker.json", 
     "command-line": "ndmg_pipeline [DTI] [BVAL] [BVEC] [MPRAGE] [ATLAS] [MASK] [OUTDIR] [DESIKAN] [JHU] [TALAIRACH] [AAL] [HARVARDOXFORD] [CPAC200] [CLEAN]", 
     "inputs": [
         {
@@ -243,5 +245,11 @@
     "suggested-resources": {
         "walltime-estimate": 7400
     }, 
-    "description": "dwi connectome estimation pipeline"
+    "description": "dwi connectome estimation pipeline",
+    "tags": {
+        "domain": [
+            "neuroinformatics", 
+            "dmri"
+        ]
+    }
 }
